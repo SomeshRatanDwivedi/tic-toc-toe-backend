@@ -1,7 +1,6 @@
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
-import { v4 as uuidv4 } from "uuid";
 import cors from "cors";
 import router from "./routers/index.js";
 import gameModel from "./models/gameModel.js";
@@ -36,6 +35,7 @@ io.on("connection", (socket) => {
   console.log("Connected:", socket.id);
 
   socket.on("find_match", async (user) => {
+    console.log("Finding match for user:", user);
     queue.push({...user, socketId: socket.id});
     if (queue.length >= 2) {
      //Getting first two players from the queue to start a game and delete them from the queue for next matches
