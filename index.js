@@ -25,7 +25,7 @@ function checkWinner(board) {
   // Check each winning combination
   for (const [a, b, c] of lines) {
     if (board[a] && board[a] === board[b] && board[b] === board[c])
-      return board[a];
+      return { symbol: board[a], winningLine : [a, b, c] };
   }
   // Check for draw or ongoing game
   return board.includes(null) ? null : "draw";
@@ -46,7 +46,6 @@ io.on("connection", (socket) => {
         current: "X",
         status: "playing"
       });
-      console.log("New game created with ID:", newGame);
       const gameId = newGame.id;
       games[gameId] = {
         board: Array(9).fill(null),
@@ -73,7 +72,8 @@ io.on("connection", (socket) => {
     const result = checkWinner(board);
     if (result) {
       game.status = "finished";
-      game.winner = result === "draw" ? null : result;
+      game.winner = result === "draw" ? null : result.board;
+      game.winningLine = result === "draw" ? null : result.winningLine;
     } else {
       game.current = current === "X" ? "O" : "X";
     }
