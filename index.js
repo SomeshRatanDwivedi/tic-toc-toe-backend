@@ -72,7 +72,7 @@ io.on("connection", (socket) => {
     const result = checkWinner(board);
     if (result) {
       game.status = "finished";
-      game.winner = result === "draw" ? null : result.board;
+      game.winner = result === "draw" ? null : result.symbol;
       game.winningLine = result === "draw" ? null : result.winningLine;
     } else {
       game.current = current === "X" ? "O" : "X";
