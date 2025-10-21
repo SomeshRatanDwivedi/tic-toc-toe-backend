@@ -9,15 +9,6 @@ const generateJwtToken = (user) => {
   return token;
 };
 
-const validateJwtToken = (token) => {
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    return { valid: true, decoded };
-  } catch (error) {
-    return { valid: false, error };
-  }
-};
 
 
-
-export { generateJwtToken, validateJwtToken };
+export { generateJwtToken };

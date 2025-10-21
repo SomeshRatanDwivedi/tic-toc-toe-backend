@@ -1,18 +1,6 @@
 import gameModel from "../models/gameModel.js";
 
 const gameController = {
-  createGame: async(req, res) => {
-    // Logic to create a new game
-  },
-  joinGame: (req, res) => {
-    // Logic for a player to join an existing game
-  },
-  makeMove: (req, res) => {
-    // Logic for a player to make a move in the game
-  },
-  getGameState: (req, res) => {
-    // Logic to get the current state of the game
-  },
   updateGame: async(req, res) => {
     // Logic to update the game state
     try {
